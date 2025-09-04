@@ -11,13 +11,13 @@
     background-color: #f0f2f5;
   }
 
-  /* Header/Navbar */
+  /* Header */
   header {
     background-color: #4267B2;
     color: white;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     position: sticky;
     top: 0;
@@ -42,7 +42,7 @@
     border-radius: 50%;
   }
 
-  /* Layout */
+  /* Main layout */
   .main {
     display: flex;
     justify-content: center;
@@ -51,13 +51,19 @@
     flex-wrap: wrap;
   }
 
-  /* Sidebar */
+  /* Left Sidebar */
   .sidebar {
     width: 250px;
     background: white;
-    padding: 20px;
     border-radius: 10px;
+    padding: 20px;
     height: fit-content;
+  }
+
+  .sidebar img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
 
   .sidebar h3 {
@@ -82,7 +88,27 @@
     gap: 20px;
   }
 
-  .post-box {
+  .stories {
+    display: flex;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-x: auto;
+  }
+
+  .story {
+    min-width: 80px;
+    height: 120px;
+    background: #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 90px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .post-box, .post {
     background: white;
     padding: 10px;
     border-radius: 10px;
@@ -104,12 +130,6 @@
     background-color: #4267B2;
     color: white;
     cursor: pointer;
-  }
-
-  .post {
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
   }
 
   .post .actions {
@@ -138,6 +158,16 @@
   .right-sidebar h3 {
     margin-top: 0;
   }
+
+  /* Scrollbar styling for stories */
+  .stories::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .stories::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+  }
 </style>
 </head>
 <body>
@@ -153,6 +183,7 @@
 <div class="main">
   <!-- Left Sidebar -->
   <div class="sidebar">
+    <img src="https://via.placeholder.com/250x120" alt="Cover Photo">
     <h3>Robiul</h3>
     <ul>
       <li>Profile</li>
@@ -165,10 +196,22 @@
 
   <!-- Feed -->
   <div class="feed">
+    <!-- Stories -->
+    <div class="stories">
+      <div class="story">Story 1</div>
+      <div class="story">Story 2</div>
+      <div class="story">Story 3</div>
+      <div class="story">Story 4</div>
+      <div class="story">Story 5</div>
+    </div>
+
+    <!-- Post Box -->
     <div class="post-box">
       <textarea id="postInput" rows="3" placeholder="What's on your mind?"></textarea>
       <button onclick="addPost()">Post</button>
     </div>
+
+    <!-- Posts -->
     <div id="posts"></div>
   </div>
 
@@ -179,6 +222,13 @@
       <li>Friend 1</li>
       <li>Friend 2</li>
       <li>Friend 3</li>
+    </ul>
+
+    <h3>Trending</h3>
+    <ul>
+      <li>Topic 1</li>
+      <li>Topic 2</li>
+      <li>Topic 3</li>
     </ul>
   </div>
 </div>
