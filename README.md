@@ -1,173 +1,233 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RobiulBook</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RobiulBook</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+  }
 
-    header {
-      background-color: #4267B2;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 26px;
-      font-weight: bold;
-    }
+  /* Header/Navbar */
+  header {
+    background-color: #4267B2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
 
-    .profile, .feed {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+  header input {
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+  }
 
-    .profile {
-      width: 250px;
-      text-align: center;
-    }
+  header .profile-nav img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
 
-    .profile img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-    }
+  /* Layout */
+  .main {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
 
-    .feed {
-      width: 500px;
-    }
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+  }
 
-    textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-      resize: none;
-    }
+  .sidebar h3 {
+    margin-top: 0;
+  }
 
-    button {
-      background-color: #4267B2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
 
-    button:hover {
-      background-color: #365899;
-    }
+  .sidebar ul li {
+    margin: 10px 0;
+    cursor: pointer;
+  }
 
-    .post {
-      background: #f0f2f5;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
+  /* Feed */
+  .feed {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .post p {
-      margin: 0;
-      margin-bottom: 5px;
-    }
+  .post-box {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
 
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
+  .post-box textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+  }
 
-    .comment-input {
-      width: 100%;
-      padding: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-top: 5px;
-    }
-  </style>
+  .post-box button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: white;
+    cursor: pointer;
+  }
+
+  .post {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .post .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+  }
+
+  .post .comment-input {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  /* Right Sidebar */
+  .right-sidebar {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+  }
+
+  .right-sidebar h3 {
+    margin-top: 0;
+  }
+</style>
 </head>
 <body>
 
-  <header>RobiulBook</header>
+<header>
+  <h1>RobiulBook</h1>
+  <input type="text" placeholder="Search RobiulBook">
+  <div class="profile-nav">
+    <img src="https://via.placeholder.com/40" alt="Profile">
+  </div>
+</header>
 
-  <div class="container">
-    <div class="profile">
-      <img src="https://via.placeholder.com/120" alt="Profile Picture">
-      <h3>Robiul</h3>
-      <p>🌟 Online</p>
-      <p>📍 Bangladesh</p>
-    </div>
-
-    <div class="feed">
-      <h3>What's on your mind?</h3>
-      <textarea id="postInput" rows="3" placeholder="Type something..."></textarea>
-      <button onclick="addPost()">Post</button>
-
-      <div id="posts"></div>
-    </div>
+<div class="main">
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <h3>Robiul</h3>
+    <ul>
+      <li>Profile</li>
+      <li>Friends</li>
+      <li>Groups</li>
+      <li>Marketplace</li>
+      <li>Settings</li>
+    </ul>
   </div>
 
-  <script>
-    function addPost() {
-      const input = document.getElementById('postInput');
-      const postsDiv = document.getElementById('posts');
+  <!-- Feed -->
+  <div class="feed">
+    <div class="post-box">
+      <textarea id="postInput" rows="3" placeholder="What's on your mind?"></textarea>
+      <button onclick="addPost()">Post</button>
+    </div>
+    <div id="posts"></div>
+  </div>
 
-      if(input.value.trim() === '') return;
+  <!-- Right Sidebar -->
+  <div class="right-sidebar">
+    <h3>Friend Suggestions</h3>
+    <ul>
+      <li>Friend 1</li>
+      <li>Friend 2</li>
+      <li>Friend 3</li>
+    </ul>
+  </div>
+</div>
 
-      const postDiv = document.createElement('div');
-      postDiv.className = 'post';
+<script>
+function addPost() {
+  const input = document.getElementById('postInput');
+  const postsDiv = document.getElementById('posts');
 
-      const postContent = document.createElement('p');
-      postContent.textContent = input.value;
-      postDiv.appendChild(postContent);
+  if(input.value.trim() === '') return;
 
-      // Actions: Like + Comment
-      const actionsDiv = document.createElement('div');
-      actionsDiv.className = 'actions';
+  const postDiv = document.createElement('div');
+  postDiv.className = 'post';
 
-      const likeBtn = document.createElement('button');
-      likeBtn.textContent = 'Like ❤️';
-      likeBtn.onclick = function() {
-        likeBtn.textContent = likeBtn.textContent === 'Like ❤️' ? 'Liked 👍' : 'Like ❤️';
-      }
+  const postContent = document.createElement('p');
+  postContent.textContent = input.value;
+  postDiv.appendChild(postContent);
 
-      actionsDiv.appendChild(likeBtn);
+  const actionsDiv = document.createElement('div');
+  actionsDiv.className = 'actions';
 
-      // Comment input
-      const commentInput = document.createElement('input');
-      commentInput.className = 'comment-input';
-      commentInput.placeholder = 'Write a comment...';
-      commentInput.onkeypress = function(e) {
-        if(e.key === 'Enter' && commentInput.value.trim() !== '') {
-          const comment = document.createElement('p');
-          comment.textContent = '💬 ' + commentInput.value;
-          comment.style.marginLeft = '10px';
-          postDiv.appendChild(comment);
-          commentInput.value = '';
-        }
-      }
+  const likeBtn = document.createElement('button');
+  likeBtn.textContent = 'Like ❤️';
+  likeBtn.onclick = function() {
+    likeBtn.textContent = likeBtn.textContent === 'Like ❤️' ? 'Liked 👍' : 'Like ❤️';
+  }
 
-      postDiv.appendChild(actionsDiv);
-      postDiv.appendChild(commentInput);
+  actionsDiv.appendChild(likeBtn);
 
-      postsDiv.prepend(postDiv);
-      input.value = '';
+  const commentInput = document.createElement('input');
+  commentInput.className = 'comment-input';
+  commentInput.placeholder = 'Write a comment...';
+  commentInput.onkeypress = function(e) {
+    if(e.key === 'Enter' && commentInput.value.trim() !== '') {
+      const comment = document.createElement('p');
+      comment.textContent = '💬 ' + commentInput.value;
+      comment.style.marginLeft = '10px';
+      postDiv.appendChild(comment);
+      commentInput.value = '';
     }
-  </script>
+  }
+
+  postDiv.appendChild(actionsDiv);
+  postDiv.appendChild(commentInput);
+
+  postsDiv.prepend(postDiv);
+  input.value = '';
+}
+</script>
 
 </body>
 </html>
